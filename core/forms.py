@@ -5,5 +5,3 @@ from autocomplete.models import AutoCompleteWidget
 class AutoCompleteForm(forms.Form):
   names = forms.CharField(widget=AutoCompleteWidget(
     template='<img src="${img}" width="48" height="48" /> ${name}'))
-  stuff = forms.CharField(widget=AutoCompleteWidget(
-    template='${name}'))

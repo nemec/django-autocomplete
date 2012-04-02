@@ -2,30 +2,33 @@
 <head>
   <title>AutoComplete Test</title>
   <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.7.2.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/style.css" />
   {{ form.media }}
 </head>
 <body>
 
 <h2>AutoComplete Test!</h2>
 
-<div id="selectedUsers_id_names" />
-
-<div id="selectedUsers_id_stuff" />
-
-{{ form.as_p }}
+<div>
+  {{ form.as_p }}
+</div>
 
 <script type="text/javascript">
   function addSelectedUser(form_id, user){
-    console.log(user);
-    var template = '<div class="user">' +
-            '<img src="${img}" width="48" height="48" /> ${name}' +
-            '</div>';
-    var elem = $.tmpl(template, user);
-    elem.appendTo($("#selectedUsers_"+form_id));
+    if(user){
+      var template = '<div class="user">' +
+        '<img src="${img}" width="48" height="48" /> ${name}' +
+        '<div class="close">&#10006;</div>' + 
+        '</div>';
+      var elem = $.tmpl(template, user);
+      elem.appendTo($("#selectedUsers"));
+      acReg[form_id].search_field.val('');
+    }
   }
   setAutoCompleteCallback("{{ form.names.auto_id }}", addSelectedUser);
-  setAutoCompleteCallback("{{ form.stuff.auto_id }}", addSelectedUser);
 </script>
+
+<div id="selectedUsers"></div>
 
 </body>
 </html>

@@ -73,4 +73,3 @@ def autocomplete(req):
       import traceback
       traceback.print_exc()
   return HttpResponse(json.dumps(ret), mimetype='application/json')
-
